@@ -1,11 +1,16 @@
 require 'csv'    
 
 puts "\t"
-print "What's the name of the CSV file you want to clean?: "
+print "What file do you want to clean?: "
 filename = gets.chomp
-file = filename + '.csv'
 
-print "What's the number of the column you want to de-dupe? "
+if filename.end_with?(".csv")
+	file = filename
+else
+	file = filename + '.csv'
+end
+
+print "What's the number of the column you want to de-dupe?: "
 column = gets.chomp.to_i - 1
 
 written = Array.new
@@ -15,7 +20,7 @@ dupe_counter = 0
 unique_counter = 0
 
 # split variables
-division = 10000
+division = 9999
 counter = 0
 
 clean_csv = CSV.open("full_cleaned_#{file}", "wb") 
